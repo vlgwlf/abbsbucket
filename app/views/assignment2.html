@@ -1,0 +1,117 @@
+<title>Abbs' totally incredible website!</title>
+<h1>Assignment 2</h1>
+<h7>Made in collaboration with <a href="http://bucketdudes.s3-website-us-east-1.amazonaws.com/#/">bucketdudes</a></h7>
+<br/><br/>
+<b><p>1. Automate the deployment of your web site using Grunt.</p></b>
+First, you must reference your AWS access keys in a .json file somewhere in your working directory.
+<br>
+Like so:
+<br/>
+<br/>
+<code>
+  {<br/>
+    "aws_access_key_id":MYACCESSKEY,<br/>
+    "aws_secret_access_key":MYSECRETACCESSKEY<br/>
+  }
+</code>
+<br/>
+<br/>
+Now go to your gruntfile and open it with your favorite text/code editor. Afterwards, find the
+grunt.initConfig and add this to it.
+<br/>
+<br/>
+<br/>
+<code>
+...<br/>
+aws: grunt.file.readJSON( 'aws-keys.json' ),
+<br/>
+aws_s3:{
+<br/>options:{<br/>
+accessKeyId: '<%= aws.AWSAccessKeyId %>',
+secretAccessKey: '<%= aws.AWSSecretKey %>'
+},<br/>
+dist: {<br/>
+options: {<br/>
+bucket: 'abbsbucket'
+},<br/>
+files: [
+{
+expand: true, cwd: 'dist/',src: [ '**' ],dest: '/' }
+]
+}
+},
+  <br>
+...
+  </code>
+<br/>
+<br/>
+<br/>
+Finally, create the grunt task that will deploy your website. Add the following line of code:
+<br/><br/>
+<code>  grunt.registerTask('deploy', ['build', 'aws_s3:dist']); </code>
+<br/><br/>
+To prove that it works, run the following line in the terminal.
+<br/><br/>
+<code>sudo grunt deploy</code>
+<br/><br/>
+And voila! You have deployed your website automatically.
+
+<br/><br/><br/>
+
+
+<p><b>2. Create a Hello World in NodeJs and create a tutorial about it.</b></p>
+First, create a javascript file named "hello.js" in your working directory
+and open it with your preferred code/text editor.<br/><br/>
+Afterwards, add this line of code and save: <br/><br/>
+<code>console.log("Hello world!");</code>
+<br/>
+<br/>
+Finally, go to your terminal and input this line:
+<br/>
+<br/>
+<code>node hello.js</code>
+<br/>
+<br/>
+It should print "Hello world!" just like what you put in between the brackets.
+<br/>
+<br/>
+<p><b>3. Install the aws sdk for nodejs and create a tutorial about it.</b></p>
+It's actually pretty simple. Go to your terminal and run the following code:
+<br/><br/>
+<code>sudo npm install aws-sdk</code>
+<br/><br/>
+Afterwards it will ask for your password, input it and watch your terminal do the rest.
+<br/><br/>
+
+<p><b>4. Create a code in NodeJs that will tell you the version/date of your website in S3.</b></p>
+Amazon has no "current version" for a bucket. But there is a way that you can find its creation date.<br/>
+You must have the Amazon SDK to make this work, if you don't have it installed, refer to section number 3.<br/><br/>
+<br/>
+<code>var AWS = require('aws-sdk');<br/>
+
+  AWS.config.region = 'us-east-1';<br/>
+
+  var s3 = new AWS.S3();<br/><br/>
+
+  s3.listBuckets(function(err, data) {<br/>
+  if (err){<br/>
+  console.log("Error:", err);<br/>
+  }<br/>
+  else {<br/>
+  for (var i in data.Buckets)<br/>
+  {<br/>
+  var bucket = data.Buckets[i];<br/>
+  if(bucket.Name == 'abbsbucket')<br/>
+  {<br/>
+  console.log("Bucket: ", bucket.Name, '; Ver: ', bucket.CreationDate);<br/>
+  break;<br/>
+  }<br/>
+  }<br/>
+  }<br/>
+  });</code>
+<br/><br/>
+<br><br>
+<p><b>5. Read and explain the post about Microservices Trade-Offs by Martin Fowler</b></p>
+<p><b>6. Create a comparison table between AWS, Azure and Google Cloud.</b></p>
+<p><b>7. Read at least 5 sections of Seth Godin’s Manifesto: “Stop Stealing Dreams” and tell
+me what you think about it.</b></p>
