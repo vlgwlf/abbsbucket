@@ -1,0 +1,56 @@
+<h1>Assignment 4</h1>
+
+<div>
+  <p><b>1. Implement the merge sort algorithm On-Prem with an integer array of 1,000,000
+  elements.</b></p>
+  <p>First of all, you need the 1,000,000 elements to sort, so import one. Afterwards, run this code:</p>
+  <code>var intArray = require("./intarray.json");<br/>
+    var nArray = [];<br/>
+    nArray = JSON.parse(JSON.stringify(intArray));<br/>
+    <br/>
+    function merge(left, right){<br/>
+    var result  = [],<br/>
+    il      = 0,<br/>
+    ir      = 0;<br/>
+
+    while (il < left.length && ir < right.length){<br/>
+    if (left[il] < right[ir]){<br/>
+    result.push(left[il++]);<br/>
+    }<br/>
+    else {<br/>
+    result.push(right[ir++]);<br/>
+    }<br/>
+    }<br/>
+
+    return result.concat(left.slice(il)).concat(right.slice(ir));<br/>
+    }<br/><br/>
+
+    function mergeSort(items){
+
+    <br/>
+    if (items.length < 2) {<br/>
+    return items;<br/>
+    }
+
+    var middle = Math.floor(items.length / 2),<br/>
+    left    = items.slice(0, middle),<br/>
+    right   = items.slice(middle);<br/>
+
+    return merge(mergeSort(left), mergeSort(right));<br/>
+    }<br/>
+    console.log(mergeSort(nArray));
+
+  </code><br/><br/>
+  <p>The output should be your sorted array.</p>
+  <br/><br/>
+  <b><p>2. Benchmark the On-Prem implementation.</p></b>
+  <p>The algorithm ate away at one of my cores (100%) and used about 90% of the second one. As for memory, it used about
+  5% of my physical memory (which should be about 205MB considering my virtual machine has 4GB on-board.) <br/><br/>
+  It finished the process in about <u>3 seconds</u> (2.980 seconds to be exact.)</p>
+  <br/><br/>
+ <b><p>3. Implement the merge sort algorithm with an integer array of 1,000,000 in a parallel
+  approach using micro-services architecture in AWS.</p></b>
+  <p>The lambda is located <a href="">here.</a>. The approach was the following: Have one lambda divide the array into smaller ones,
+    afterwards send both of those arrays (left and right) to another lambda who would sort them and return them to the first lambda to verify if it was finished.</p>
+  <b><p>4. Benchmark the AWS implementation.</p></b>
+</div>
