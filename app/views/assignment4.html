@@ -1,47 +1,16 @@
 <h1>Assignment 4</h1>
-
+<h4>Made in collaboration with <a href="favelix.s3-website-us-east-1.amazonaws.com">Alex</a>.</h4><br/>
 <div>
   <p><b>1. Implement the merge sort algorithm On-Prem with an integer array of 1,000,000
   elements.</b></p>
-  <p>First of all, you need the 1,000,000 elements to sort, so import one. Afterwards, run this code:</p>
-  <code>var intArray = require("./intarray.json");<br/>
-    var nArray = [];<br/>
-    nArray = JSON.parse(JSON.stringify(intArray));<br/>
-    <br/>
-    function merge(left, right){<br/>
-    var result  = [],<br/>
-    il      = 0,<br/>
-    ir      = 0;<br/>
+  <p>First of all, you need the array with 1,000,000 elements to sort, so get one. Afterwards, run this code:</p>
 
-    while (il < left.length && ir < right.length){<br/>
-    if (left[il] < right[ir]){<br/>
-    result.push(left[il++]);<br/>
-    }<br/>
-    else {<br/>
-    result.push(right[ir++]);<br/>
-    }<br/>
-    }<br/>
-
-    return result.concat(left.slice(il)).concat(right.slice(ir));<br/>
-    }<br/><br/>
-
-    function mergeSort(items){
-
-    <br/>
-    if (items.length < 2) {<br/>
-    return items;<br/>
-    }
-
-    var middle = Math.floor(items.length / 2),<br/>
-    left    = items.slice(0, middle),<br/>
-    right   = items.slice(middle);<br/>
-
-    return merge(mergeSort(left), mergeSort(right));<br/>
-    }<br/>
-    console.log(mergeSort(nArray));
-
+  <code>
+    Code is located here: <a href="https://github.com/vlgwlf/abbsbucket/blob/master/mergeSort.js">mergesort</a>
   </code><br/><br/>
-  <p>The output should be your sorted array.</p>
+  <p>The output should be your sorted array.</p><br/>
+  Reference: <a href="https://www.nczonline.net/blog/2012/10/02/computer-science-and-javascript-merge-sort/">Merge Sort</a>
+
   <br/><br/>
   <b><p>2. Benchmark the On-Prem implementation.</p></b>
   <p>The algorithm ate away at one of my cores (100%) and used about 90% of the second one. As for memory, it used about
@@ -50,7 +19,9 @@
   <br/><br/>
  <b><p>3. Implement the merge sort algorithm with an integer array of 1,000,000 in a parallel
   approach using micro-services architecture in AWS.</p></b>
-  <p>The lambda is located <a href="https://github.com/vlgwlf/abbsbucket/tree/master/newLambda-merge">here.</a>. The approach was the following: Have one lambda divide the array into smaller ones,
-    afterwards send both of those arrays (left and right) to another lambda who would sort them and return them to the first lambda to verify if it was finished.</p>
+  <p>The lambda is located <a href="https://github.com/vlgwlf/abbsbucket/tree/master/newLambda-merge">here</a>. The approach was the following: Have one lambda divide the array into smaller ones,
+    afterwards send both of those arrays (left and right) to another lambda who would sort them and return them to the first lambda to verify if it was finished. However, there were complications during implementation.
+  Due to the ridiculous amounts of requests during the sorting, AWS decided to block us off, making it impossible to determine if it was sorted completely or determine how much resources it took.</p><br/><br/>
   <b><p>4. Benchmark the AWS implementation.</p></b>
+  <p>Currently no stats are available.</p>
 </div>
