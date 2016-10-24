@@ -1,0 +1,593 @@
+<h1>Assignment 8</h1>
+<br/><br/>
+<p>
+  <strong><h3>General Design Principles</h3></strong>
+</p><br/><br/>
+<p>
+  <strong>Stop guessing your capacity needs</strong>
+</p>
+<p>
+  Eliminate guessing your infrastructure capacity needs; with cloud computing you can scale up and down as needed instead of spending resources needlessly in
+  advance.
+</p>
+<p>
+  <strong>Test system at production scale</strong>
+</p>
+<p>
+  Outside of the cloud it is usually cost-prohibitive to duplicate your environment for testing purposes, and even if it is, they are not ready for high
+  volumes of traffic. Because the cloud allows you to pay for the environment only when you’re testing, it costs only a fraction of what it would on
+  premises.
+</p>
+<p>
+  <strong>Lower the risk of architecture change</strong>
+</p>
+<p>
+  Testing environments that emulate your production configuration is an incredibly easy task in the cloud; you can also test serialization that happens in
+  on-premises environments where teams queue the resource tests.
+</p>
+<p>
+  <strong>Automate to make architectural experimentation easier</strong>
+</p>
+<p>
+  Replicate systems easily and at low cost. Track changes to automation, audit impact and revert to previous states when necessary.
+</p>
+<p>
+  <strong>Allow for evolutionary architectures</strong>
+</p>
+<p>
+  Architectures are usually implemented as a one time event, with a few major versions of the system in its lifetime. As a business and its context change,
+  these initial decisions may hinder the system’s ability to deliver changing requirements. In the cloud, the capability to automate and test on demand
+  lowers the risk of impact from design.
+</p>
+<br/><br/><br/>
+<p>
+  <strong><h3>The Four Pillars of the Well-Architected Framework</h3></strong>
+</p><br/><br/>
+<p>
+  As with a building, if the foundations are not solid enough, there might be structural problems that undermine its integrity and function. When
+  architecting technology solutions, if you neglect the four pillars of security, reliability, performance efficiency and cost optimization it can become
+  challenging to build a system that caters to your expectations and requirements.
+</p>
+<br/><br/>
+<p>
+  <h4><strong>Security</strong></h4>
+</p><br/>
+
+<p>
+  It encompasses the ability to protect information, systems and assets while delivering the business value through risk assessment and mitigation
+  strategies.
+</p>
+<p>
+  <em>Design Principles</em>
+</p>
+<ul>
+  <li>
+    <p>
+      Apply security at all layers
+    </p>
+  </li>
+  <li>
+    <p>
+      Enable traceability
+    </p>
+  </li>
+  <li>
+    <p>
+      Automate responses to security events
+    </p>
+  </li>
+  <li>
+    <p>
+      Focus on securing your system
+    </p>
+  </li>
+  <li>
+    <p>
+      Automate best security practices
+    </p>
+  </li>
+</ul>
+<p>
+  <em>Major areas</em>
+</p>
+<ol>
+  <li>
+    <p>
+      Data protection
+    </p>
+  </li>
+  <li>
+    <p>
+      Privilege management
+    </p>
+  </li>
+  <li>
+    <p>
+      Infrastructure protection
+    </p>
+  </li>
+  <li>
+    <p>
+      Detective controls
+    </p>
+  </li>
+</ol>
+<br/><br/>
+<p>
+  <strong><em>Best Practices</em></strong>
+</p>
+<p>
+  <em>1</em>
+  . Data protection:
+</p>
+<ul>
+  <li>
+    <p>
+      Customers maintain control over their data.
+    </p>
+  </li>
+  <li>
+    <p>
+      Encrypt data and manage keys through rotation.
+    </p>
+  </li>
+  <li>
+    <p>
+      Logging.
+    </p>
+  </li>
+  <li>
+    <p>
+      Reliability.
+    </p>
+  </li>
+  <li>
+    <p>
+      Versioning.
+    </p>
+  </li>
+  <li>
+    <p>
+      Never move data between regions.
+    </p>
+  </li>
+</ul>
+<p>
+  <em>Key Services</em>
+  : Elastic Load Balancing, Amazon Elastic Block Store, S3, Relational Database Service.
+</p>
+<br/><br/>
+<p>
+  2. Privilege management
+</p>
+<p>
+  It is critical to keep root account credentials protected, locking the Multi-Factor Authentication in a physically secured location, as well as managing
+  the Identity and Access Management service correctly in order to establish access levels to resources.
+</p>
+<p>
+  <em>Key Services: </em>
+  IAM, MFA.
+</p>
+<br/><br/>
+<p>
+  <em>3. Infrastructure protection</em>
+</p>
+<p>
+  It is possible to create a private, secured, and scalable environment using the Amazon Virtual Private Cloud, which can help define your topology-
+  including gateways, routing tables, and public and/or private subnets.
+</p>
+<p>
+  It is advisable to implement multiple layers of defense no matter the type of environment: enforcing boundary protection, monitoring points of ingress and
+  egress, and comprehensive logging, monitoring, and alerting are all essential for an effective information security plan.
+</p>
+<p>
+  <em>Key Services:</em>
+  Amazon Virtual Private Cloud (VPC)
+</p><br/><br/>
+<p>
+  4. <em>Detective controls</em>
+</p>
+<p>
+  You can use detective controls to detect or identify a security breach. They are a normal part of governance frameworks, and can be used to support a
+  quality process, a legal compliance obligation, and/or threat identification and response efforts.
+</p>
+<p>
+  <em>Key Services: </em>
+  AWS CloudTrail (which tracks API calls) and AWS Config which provides detailed inventory of your AWS resources and configuration, as well as CloudWatch.
+</p>
+<br/><br/><br/>
+<p>
+  <strong><h4>Reliability</h4></strong>
+</p>
+<br/>
+<p>
+  The Reliability pillar encompasses the ability of a system to recover from infrastructure or service disruptions, dynamically acquire computing resources
+  to meet demand, and mitigate disruptions such as misconfigurations or transient network issues.
+</p>
+<p>
+  <em>Design Principles</em>
+</p>
+<ul>
+  <li>
+    <p>
+      Test recovery procedures
+    </p>
+  </li>
+  <li>
+    <p>
+      Automatically recover from failure
+    </p>
+  </li>
+  <li>
+    <p>
+      Scale horizontally to increase aggregate system availability
+    </p>
+  </li>
+  <li>
+    <p>
+      Stop guessing capacity
+    </p>
+  </li>
+</ul>
+<p>
+  <em>Definition</em>
+</p>
+<ol>
+  <li>
+    <p>
+      Foundations
+    </p>
+  </li>
+  <li>
+    <p>
+      Change management
+    </p>
+  </li>
+  <li>
+    <p>
+      Failure management
+    </p>
+  </li>
+</ol>
+<p>
+  To achieve reliability, a system must have a well-planned foundation and monitoring in place, with mechanisms for handling changes on demand or
+  requirements. The system should be designed to detect failure and automatically heal itself.
+</p><br/><br/>
+<p>
+  <em><strong>Best Practices</strong></em>
+</p><br/>
+<p>
+  <em>1. Foundations</em>
+</p>
+<p>
+  AWS sets service limits (an upper limit on the number of each resource your team can request) to protect you from accidently over-provisioning resources.
+  You will need to have governance and processes in place to monitor and change these limits to meet your business needs. For all intents and purposes, a
+  hybrid model enables the gradual transition to an all-in, cloud approach over time, and therefore it’s important to have a design for how your AWS and
+  on-premises resources will interact as a network topology.
+</p>
+<p>
+  <em>Key Services: </em>
+  AWS IAM, AWS VPC.
+</p><br/><br/>
+<p>
+  <em>2. Change Management</em>
+</p>
+<p>
+  Being aware of how change affects a system allows you to plan proactively, and monitoring allows you to quickly identify trends that could lead to capacity
+  issues or SLA breaches. Using AWS, you can monitor the behavior of a system and automate the response to KPIs, for example, adding additional servers as a
+  system gains more users. You can control who has permission to make system changes and audit the history of these changes.
+</p>
+<p>
+  With monitoring in place, your team will be automatically alerted when KPIs deviate from expected norms. Automatic logging of changes to your environment
+  allows you to audit and quickly identify actions that might have impacted reliability. Controls on change management ensure that you can enforce the rules
+  that deliver the reliability you need.
+</p>
+<p>
+  <em>Key Services: </em>
+  AWS CloudTrail, AWS Config
+</p><br/><br/>
+<p>
+  <em>3. Failure Management</em>
+</p>
+<p>
+  In any system of reasonable complexity it is expected that failures will occur, and it is generally of interest to know how to become aware of these
+  failures, respond to them, and prevent them from happening again. Since the cloud enables you to stand up temporary versions of a whole system at low cost,
+  you can use automated testing to verify full recovery processes.
+</p>
+<p>
+  Actively track KPIs, such as the recovery time objective (RTO) and recovery point objective (RPO), to assess a system’s fitness (especially under
+  failure-testing scenarios) and to help you identify and mitigate single points of failure.
+</p>
+<p>
+  The objective is to thoroughly test your system-recovery processes so that you are confident that you can recover all your data and continue to serve your
+  customers, even in the face of sustained problems. Your recovery processes should be as well exercised as your normal production processes.
+</p>
+<p>
+  <em>Key Services</em>
+  :
+</p>
+<p>
+  AWS CloudFormation enables template creation of AWS resources and provisions.
+</p><br/><br/>
+<p>
+  <strong>Performance Efficiency</strong>
+</p>
+<p>
+  <em>Design Principles</em>
+</p>
+<ul>
+  <li>
+    <p>
+      Democratize advances technologies
+    </p>
+  </li>
+  <li>
+    <p>
+      Go global in minutes
+    </p>
+  </li>
+  <li>
+    <p>
+      Use server-less architectures
+    </p>
+  </li>
+  <li>
+    <p>
+      Experiment more often
+    </p>
+  </li>
+</ul>
+<p>
+  <em>Major areas:</em>
+</p>
+<ol>
+  <li>
+    <p>
+      Compute
+    </p>
+  </li>
+  <li>
+    <p>
+      Storage
+    </p>
+  </li>
+  <li>
+    <p>
+      Database
+    </p>
+  </li>
+  <li>
+    <p>
+      Space-time trade-off
+    </p>
+  </li>
+</ol>
+<p>
+  Considerations:
+</p>
+<ol type="a">
+  <li>
+    <p>
+      Select optimal approach and resources
+    </p>
+  </li>
+  <li>
+    <p>
+      Keep that approach current given evolving capabilities
+    </p>
+  </li>
+  <li>
+    <p>
+      How to monitor run-time performance against expectations
+    </p>
+  </li>
+  <li>
+    <p>
+      How the resources scale against demand
+    </p>
+  </li>
+</ol><br/><br/>
+<p>
+  <strong><em>Best Practices</em></strong>
+</p>
+<p>
+  <strong>Compute</strong>
+  <strong> </strong>
+</p>
+<p>
+  Optimal Server configuration for a particular architecture may vary based on application design, usage patterns, and configuration settings. Selecting the
+  wrong server configuration for a use case can lead to lower performance efficiency. In AWS, servers are virtualized and, therefore, you can change their
+  capabilities with the click of a button or an API call. From an operational standpoint, you should have monitoring in place to notify you of any
+  degradation in performance.
+</p>
+<p>
+  <em>Key Services: </em>
+  Auto scaling is key to ensuring you have enough good instances to meet demand.
+</p><br/><br/>
+<p>
+  <strong>Storage</strong>
+</p>
+<p>
+  The optimal storage solution for a particular system will vary based on the kind of access method (block, file, or object), patterns of access (random or
+  sequential), throughput required, frequency of access (online, offline, archival), frequency of update (worm, dynamic), and availability and durability
+  constraints. Well architected systems use multiple storage solutions and enable different features to improve performance.
+</p>
+<p>
+  When selecting a storage solution, it is important to have test data that shows which storage solution will deliver the cost/value margin required for that
+  workload. These tests should be repeatable (ideally part of the CD pipeline) so that you can easily test new storage solutions or capabilities as they
+  become available
+</p>
+<p>
+  <em>Key Services: </em>
+  Amazon EBS, S3
+</p><br/><br/>
+<p>
+  <strong>Database</strong>
+</p>
+<p>
+  The optimal database solution for a particular system can vary based on requirements for consistency, availability, partition tolerance, and latency. Many
+  systems use different database solutions for various sub-systems and enable different features to improve performance. Selecting the wrong database
+  solution and features for a system can lead to lower performance efficiency.
+</p>
+<p>
+  During the build and deployment of your database solution, treat the database as code to allow it to evolve over time rather than be a one-time fixed
+  decision. Test it frequently to identify which database solution matches which workload best. These tests should be repeatable (ideally part of the CD
+  pipeline) so that you can easily test new database solutions or capabilities as they become available.
+</p>
+<p>
+  <em>Key Services: </em>
+  Amazon RDS (Relational Database System), Amazon Dynamo DB for a NoSQL database.
+</p><br/><br/><br/>
+<p>
+  <strong>Space-Time trade-off</strong>
+</p><br/>
+<p>
+  When architecting solutions, there is a series of trade-offs where space (memory or storage) is used to reduce processing time (compute), or time is used
+  to reduce space. You can also position resources or cached data closer to end users to reduce time.
+</p>
+<p>
+  Use the global infrastructure of AWS to achieve lower latency and higher throughput, and ensure that your data resides only in the region(s) you specify.
+  AWS also offers caching solutions such as Amazon ElastiCache, which helps improve efficiency, and Amazon CloudFront, which caches copies of your static
+  content closer to end-users.
+</p>
+<p>
+  Space-time trade-offs are required to deliver performance efficiency, and it is important to have test data that shows which trade-offs match that workload
+  best.
+</p>
+<p>
+  The architecture should scale with demand and maintain its margin.
+</p>
+<p><br/><br/>
+  <em>Key Services: </em>
+  AWS’ multiple regions which allow you to choose the optimal region for your resources, data and processing. Amazon CloudFront helps with cache location.
+</p><br/><br/><br/>
+<p>
+  <strong>Cost Optimization</strong>
+</p>
+<p>
+  A cost-optimized system allows you to pay the lowest price possible while still achieving your business objectives and meeting, or exceeding, key
+  requirements for the other Well-Architected pillars. You can achieve cost optimization using techniques to select the appropriate architecture, reduce
+  unused resources, and select the most economical approach.
+</p>
+<p>
+  Design Principles
+</p>
+<ul>
+  <li>
+    <p>
+      Transparently attribute expenditure
+    </p>
+  </li>
+  <li>
+    <p>
+      Use managed services to reduce cost of ownership
+    </p>
+  </li>
+  <li>
+    <p>
+      Trade capital expense for operating expense
+    </p>
+  </li>
+  <li>
+    <p>
+      Benefit from economies of scale
+    </p>
+  </li>
+  <li>
+    <p>
+      Stop spending money on data center operations
+    </p>
+  </li>
+</ul>
+<p>
+  Major areas:
+</p>
+<ol>
+  <li>
+    <p>
+      Matched supply and demand
+    </p>
+  </li>
+  <li>
+    <p>
+      Cost-effective resources
+    </p>
+  </li>
+  <li>
+    <p>
+      Expenditure awareness
+    </p>
+  </li>
+  <li>
+    <p>
+      Optimizing over time
+    </p>
+  </li>
+</ol>
+<p>
+  In some cases, it’s best to optimize for speed—going to market quickly, shipping new features, or simply meeting a deadline—rather than investing in
+  upfront cost optimization. Design decisions are sometimes guided by haste as opposed to empirical data, as the temptation always exists to overcompensate
+  “just in case” rather than spend time benchmarking for the most cost-optimal deployment. This often leads to drastically over-provisioned and
+  under-optimized deployments.
+</p><br/><br/>
+<p>
+  <em><strong>Best Practices</strong></em>
+</p><br/><br/>
+<p>
+  <strong>Matched Supply and Demand</strong>
+</p>
+<p>
+  Optimally matching supply to demand delivers the lowest costs for a system, but there also needs to be sufficient extra supply to allow for provisioning
+  time and individual resource failures. If you can anticipate changes in demand, you can save more money and ensure your resources match your system needs.
+  Monitoring tools and regular benchmarking can help you achieve much greater utilization of resources.
+</p>
+<p>
+  <em>Key Services:</em>
+  Auto Scaling to add or remove resources to match demand without overspending.
+</p><br/><br/>
+<p>
+  <strong>Cost-Effective Resources</strong>
+</p>
+<p>
+  Using the appropriate instances and resources for your system is key to cost savings. A well architected system will use the most cost-effective resources,
+  which can have a significant and positive economic impact. You also have the opportunity to use managed services to reduce costs. For example, rather than
+  maintaining servers to deliver email, you can use a service that charges on a per-message basis.
+</p>
+<p>
+  <em>Key Services: </em>
+  Reserved Instances and prepaid capacity to reduce cost. AWS Trusted Advisor.
+</p><br/><br/>
+<p>
+  <strong>Expenditure Awareness</strong>
+</p>
+<p>
+  The cloud enables encourages innovation and fast-paced development and deployment. It eliminates the manual processes and time associated with provisioning
+  on-premises infrastructure, the ease of use and virtually unlimited on-demand capacity may require a new way of thinking about expenditures.
+</p>
+<p>
+  Accurate cost attribution also allows you to understand which products are truly profitable, and allows you to make more informed decisions about where to
+  allocate budget.
+</p>
+<p>
+  With this visibility of costs against tagged resources it becomes easier to identify orphaned resources or projects that are no longer generating value to
+  the business and should be decommissioned. You can set up billing alerts to notify you of predicted overspending as well.
+</p>
+<p>
+  <em>Key Services:</em>
+  Amazon CloudWatch, Amazon Simple Notification Service (SNS) will warn you if you go or are forecasted to go over your budgeted amount.
+</p><br/><br/>
+<p>
+  <strong>Optimizing over time</strong>
+</p>
+<p>
+  As AWS releases new services and features, it is a best practice to reassess your existing architectural decisions to ensure they continue to be the most
+  cost effective. As your requirements change, be aggressive in decommissioning resources and entire services, or systems that you no longer require.
+</p>
+<p>
+  By regularly reassessing your deployment, it is often possible to utilize new AWS services to lower your costs.
+</p>
+<p>
+  <em>Key Services: </em>
+  AWS Blog and <em>What’s New</em> sections on the AWS website, as well as AWS Trusted Advisor for monitoring unused or idle resources committed to a
+  Reserved Instance capacity.
+</p><br/><br/>

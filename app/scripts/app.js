@@ -49,6 +49,16 @@ angular
         controller: 'Assignment6Ctrl',
         controllerAs: 'assignment6'
       })
+      .when('/secureWeather', {
+        templateUrl: 'views/secureweather.html',
+        controller: 'SecureweatherCtrl',
+        controllerAs: 'secureWeather'
+      })
+      .when('/assignment8', {
+        templateUrl: 'views/assignment8.html',
+        controller: 'Assignment8Ctrl',
+        controllerAs: 'assignment8'
+      })
       .otherwise({
         redirectTo: '/'
       });

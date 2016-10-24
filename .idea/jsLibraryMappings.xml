@@ -2,5 +2,6 @@
 <project version="4">
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$" libraries="{abbsbucket/node_modules}" />
+    <file url="file://$PROJECT_DIR$/abbs-sls" libraries="{abbsbucket/abbs-sls/node_modules}" />
   </component>
 </project>
